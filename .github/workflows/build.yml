@@ -28,10 +28,16 @@ jobs:
         run: |
           gh release upload "${{ github.event.release.tag_name }}" closerintime.tap closerintime.tzx
 
+      - name: Download JSSpeccy
+        run: |
+          curl -sL https://github.com/gasman/jsspeccy3/releases/download/v3.2/jsspeccy-3.2.zip -o jsspeccy.zip
+          unzip jsspeccy.zip
+
       - name: Prepare Pages
         run: |
           mkdir _site
-          cp closerintime.tzx _site/
+          cp index.html closerintime.tzx _site/
+          cp -r jsspeccy _site/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
