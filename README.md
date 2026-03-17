@@ -21,7 +21,7 @@ Select 2 or 3 historical events and see them on a proportional timeline. The pro
 
 ## Running
 
-**[Play in your browser](https://jsspeccy.zxdemo.org/?u=https://raw.githubusercontent.com/enricobattocchi/closerintime-spectrum/main/closerintime.tzx)** — runs immediately in JSSpeccy, no download needed.
+**[Play in your browser](https://jsspeccy.zxdemo.org/?u=https://enricobattocchi.github.io/closerintime-spectrum/closerintime.tzx)** — runs immediately in JSSpeccy, no download needed.
 
 Or download `closerintime.tzx` from the [latest release](https://github.com/enricobattocchi/closerintime-spectrum/releases/latest) and load it in any ZX Spectrum emulator ([FUSE](https://fuse-emulator.sourceforge.net/), [ZXSpin](https://www.zxspin.org/), etc.).
 
