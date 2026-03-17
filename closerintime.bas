@@ -245,20 +245,21 @@
  737 IF d2>d1 THEN GO TO 750
  738 GO TO 760
  740 REM closer to us
- 741 PRINT AT sr,0; INK 6;e$(s(2))( TO 26)
+ 741 PRINT AT sr,0; INK 6;e$(s(2))
  742 PRINT AT sr+1,0; INK 6;"is closer to "; INK 2;"us"; INK 6;" than to"
- 743 PRINT AT sr+2,0; INK 6;e$(s(1))( TO 26)
+ 743 PRINT AT sr+2,0; INK 6;e$(s(1))
  744 GO TO 765
  750 REM closer to event
- 751 PRINT AT sr,0; INK 6;e$(s(2))( TO 26)
+ 751 PRINT AT sr,0; INK 6;e$(s(2))
  752 PRINT AT sr+1,0; INK 6;"is closer to"
- 753 PRINT AT sr+2,0; INK 6;e$(s(1))( TO 26)
+ 753 PRINT AT sr+2,0; INK 6;e$(s(1))
  754 PRINT AT sr+3,0; INK 6;"than to "; INK 2;"us"
  755 GO TO 765
  760 REM exactly halfway
- 761 PRINT AT sr,0; INK 6;e$(s(2))( TO 26)
+ 761 PRINT AT sr,0; INK 6;e$(s(2))
  762 PRINT AT sr+1,0; INK 6;"is exactly halfway between"
- 763 PRINT AT sr+2,0; INK 6;e$(s(1))( TO 22); INK 6;" and "; INK 2;"us"
+ 763 PRINT AT sr+2,0; INK 6;e$(s(1))
+ 764 PRINT AT sr+3,0; INK 6;"and "; INK 2;"us"
  765 PRINT AT sr+5,0; INK 4;"(";d1;" vs ";d2;" years)"
  767 GO TO 800
  770 REM -- 3-event sentence --
@@ -269,18 +270,24 @@
  775 IF d1>d2 THEN GO TO 780
  776 IF d2>d1 THEN GO TO 786
  777 GO TO 792
- 780 PRINT AT sr,0; INK 6;"More time between "; INK 5;e$(s(1))( TO 13)
- 781 PRINT AT sr+1,0; INK 6;"and "; INK 5;e$(s(2))( TO 26)
- 782 PRINT AT sr+2,0; INK 6;"than "; INK 3;e$(s(3))( TO 19); INK 6;" and "; INK 2;"us"
- 785 GO TO 797
- 786 PRINT AT sr,0; INK 6;"More time between "; INK 3;e$(s(3))( TO 13)
- 787 PRINT AT sr+1,0; INK 6;"and "; INK 2;"us"; INK 6;" than between"
- 788 PRINT AT sr+2,0; INK 5;e$(s(1))( TO 15); INK 6;" and "; INK 5;e$(s(2))( TO 10)
- 791 GO TO 797
- 792 PRINT AT sr,0; INK 6;"Same time between "; INK 5;e$(s(1))( TO 13)
- 793 PRINT AT sr+1,0; INK 6;"and "; INK 5;e$(s(2))( TO 26)
- 794 PRINT AT sr+2,0; INK 6;"as "; INK 3;e$(s(3))( TO 21); INK 6;" and "; INK 2;"us"
- 797 PRINT AT sr+4,0; INK 4;"(";d1;" vs ";d2;" years)"
+ 780 PRINT AT sr,0; INK 6;"More time between"
+ 781 PRINT AT sr+1,0; INK 5;e$(s(1))
+ 782 PRINT AT sr+2,0; INK 6;"and "; INK 5;e$(s(2))
+ 783 PRINT AT sr+3,0; INK 6;"than between"
+ 784 PRINT AT sr+4,0; INK 3;e$(s(3)); INK 6;" and "; INK 2;"us"
+ 785 GO TO 798
+ 786 PRINT AT sr,0; INK 6;"More time between"
+ 787 PRINT AT sr+1,0; INK 3;e$(s(3)); INK 6;" and "; INK 2;"us"
+ 788 PRINT AT sr+2,0; INK 6;"than between"
+ 789 PRINT AT sr+3,0; INK 5;e$(s(1))
+ 790 PRINT AT sr+4,0; INK 6;"and "; INK 5;e$(s(2))
+ 791 GO TO 798
+ 792 PRINT AT sr,0; INK 6;"Same time between"
+ 793 PRINT AT sr+1,0; INK 5;e$(s(1))
+ 794 PRINT AT sr+2,0; INK 6;"and "; INK 5;e$(s(2))
+ 795 PRINT AT sr+3,0; INK 6;"as between"
+ 796 PRINT AT sr+4,0; INK 3;e$(s(3)); INK 6;" and "; INK 2;"us"
+ 798 PRINT AT sr+5,0; INK 4;"(";d1;" vs ";d2;" years)"
  800 REM === PLAY AGAIN? ===
  801 PRINT AT 20,0; INK 2;"_______________________________"
  802 PRINT AT 21,0; INK 6;"Press any key to try again"
