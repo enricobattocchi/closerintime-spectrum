@@ -28,7 +28,7 @@
 </head>
 <body>
     <h1>Closer In Time — ZX Spectrum Edition</h1>
-    <p>Click the screen to start, then wait for the program to load.</p>
+    <p>Click the screen, type <kbd>LOAD ""</kbd> and press <kbd>ENTER</kbd>. On the Spectrum keyboard, <kbd>"</kbd> is <kbd>SYMBOL SHIFT</kbd> + <kbd>P</kbd>.</p>
     <div id="jsspeccy"></div>
     <p>Q/A = move, SPACE = select, G = show timeline</p>
     <p><a href="https://github.com/enricobattocchi/closerintime-spectrum">Source on GitHub</a>
@@ -37,8 +37,7 @@
         JSSpeccy(document.getElementById('jsspeccy'), {
             zoom: 2,
             machine: 48,
-            openUrl: 'closerintime.tzx',
-            autoLoadTapes: true
+            openUrl: 'closerintime.tzx'
         });
     </script>
 </body>
