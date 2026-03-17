@@ -19,7 +19,7 @@ jobs:
 
       - name: Build TAP and TZX
         run: |
-          zmakebas -a 1 -n "CLOSERINT" -o closerintime.tap closerintime.bas
+          zmakebas -n "CLOSERINT" -o closerintime.tap closerintime.bas
           tapeconv closerintime.tap closerintime.tzx
 
       - name: Attach files to release
