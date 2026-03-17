@@ -2,6 +2,8 @@
 
 A ZX Spectrum BASIC port of [closerinti.me](https://closerinti.me).
 
+<img width="960" height="720" alt="screenshot" src="https://github.com/user-attachments/assets/60cc87e0-f0c5-4491-8627-d583dab12896" />
+
 Select 2 or 3 historical events and see them on a proportional timeline. The program generates comparison sentences like:
 
 > *"Cleopatra's death is closer to us than to the Great Pyramid of Giza"*
@@ -32,5 +34,3 @@ sudo apt install zmakebas fuse-emulator-utils
 zmakebas -a 1 -n "CLOSERINT" -o closerintime.tap closerintime.bas
 tapeconv closerintime.tap closerintime.tzx
 ```
-
-Tagging a release (`git tag v1.0 && git push --tags`) triggers a GitHub Action that builds and attaches the TZX automatically.
