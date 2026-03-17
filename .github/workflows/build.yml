@@ -36,8 +36,8 @@ jobs:
         run: |
           mkdir _site
           cp closerintime.tzx _site/
-          cp site/index.html _site/
-          cp site/raze.js _site/
+          cp .github/pages/index.html _site/
+          cp .github/pages/raze.js _site/
           cp raze-dist/base64.js raze-dist/raze.css _site/
           cp -r raze-dist/pkg _site/
 
