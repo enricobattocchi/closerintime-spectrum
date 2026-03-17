@@ -231,7 +231,7 @@
  663 PRINT AT tr+1,1; INK 4;yr
  664 REM
  700 REM === GENERATE SENTENCE ===
- 701 LET sr=14: REM sentence row
+ 701 LET sr=13: REM sentence row
  702 PRINT AT sr-1,0; INK 2;"_______________________________"
  710 IF ns=2 THEN GO TO 730
  720 IF ns=3 THEN GO TO 770
@@ -260,7 +260,7 @@
  762 PRINT AT sr+1,0; INK 6;"is exactly halfway between"
  763 PRINT AT sr+2,0; INK 6;e$(s(1))
  764 PRINT AT sr+3,0; INK 6;"and "; INK 2;"us"
- 765 PRINT AT sr+5,0; INK 4;"(";d1;" vs ";d2;" years)"
+ 765 PRINT AT 19,0; INK 4;"(";d1;" vs ";d2;" years)"
  767 GO TO 800
  770 REM -- 3-event sentence --
  771 LET d1=y(s(2))-y(s(1))
@@ -268,26 +268,28 @@
  773 IF d1<0 THEN LET d1=-d1
  774 IF d2<0 THEN LET d2=-d2
  775 IF d1>d2 THEN GO TO 780
- 776 IF d2>d1 THEN GO TO 786
- 777 GO TO 792
+ 776 IF d2>d1 THEN GO TO 787
+ 777 GO TO 794
  780 PRINT AT sr,0; INK 6;"More time between"
  781 PRINT AT sr+1,0; INK 5;e$(s(1))
  782 PRINT AT sr+2,0; INK 6;"and "; INK 5;e$(s(2))
  783 PRINT AT sr+3,0; INK 6;"than between"
- 784 PRINT AT sr+4,0; INK 3;e$(s(3)); INK 6;" and "; INK 2;"us"
- 785 GO TO 798
- 786 PRINT AT sr,0; INK 6;"More time between"
- 787 PRINT AT sr+1,0; INK 3;e$(s(3)); INK 6;" and "; INK 2;"us"
- 788 PRINT AT sr+2,0; INK 6;"than between"
- 789 PRINT AT sr+3,0; INK 5;e$(s(1))
- 790 PRINT AT sr+4,0; INK 6;"and "; INK 5;e$(s(2))
- 791 GO TO 798
- 792 PRINT AT sr,0; INK 6;"Same time between"
- 793 PRINT AT sr+1,0; INK 5;e$(s(1))
- 794 PRINT AT sr+2,0; INK 6;"and "; INK 5;e$(s(2))
- 795 PRINT AT sr+3,0; INK 6;"as between"
- 796 PRINT AT sr+4,0; INK 3;e$(s(3)); INK 6;" and "; INK 2;"us"
- 798 PRINT AT sr+5,0; INK 4;"(";d1;" vs ";d2;" years)"
+ 784 PRINT AT sr+4,0; INK 3;e$(s(3))
+ 785 PRINT AT sr+5,0; INK 6;"and "; INK 2;"us"
+ 786 GO TO 799
+ 787 PRINT AT sr,0; INK 6;"More time between"
+ 788 PRINT AT sr+1,0; INK 3;e$(s(3))
+ 789 PRINT AT sr+2,0; INK 6;"and "; INK 2;"us"
+ 790 PRINT AT sr+3,0; INK 6;"than between"
+ 791 PRINT AT sr+4,0; INK 5;e$(s(1))
+ 792 PRINT AT sr+5,0; INK 6;"and "; INK 5;e$(s(2))
+ 793 GO TO 799
+ 794 PRINT AT sr,0; INK 6;"Same time between"
+ 795 PRINT AT sr+1,0; INK 5;e$(s(1))
+ 796 PRINT AT sr+2,0; INK 6;"and "; INK 5;e$(s(2))
+ 797 PRINT AT sr+3,0; INK 6;"as between"
+ 798 PRINT AT sr+4,0; INK 3;e$(s(3))
+ 799 PRINT AT 19,0; INK 4;"(";d1;" vs ";d2;" years)"
  800 REM === PLAY AGAIN? ===
  801 PRINT AT 20,0; INK 2;"_______________________________"
  802 PRINT AT 21,0; INK 6;"Press any key to try again"
