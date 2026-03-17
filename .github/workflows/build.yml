@@ -28,16 +28,18 @@ jobs:
         run: |
           gh release upload "${{ github.event.release.tag_name }}" closerintime.tap closerintime.tzx
 
-      - name: Download JSSpeccy
+      - name: Download RAZE emulator
         run: |
-          curl -sL https://github.com/gasman/jsspeccy3/releases/download/v3.1/jsspeccy-3.1.zip -o jsspeccy.zip
-          unzip -o -d jsspeccy-dist jsspeccy.zip
+          git clone --depth 1 --branch gh-pages https://github.com/rodrigorc/raze.git raze-dist
 
       - name: Prepare Pages
         run: |
           mkdir _site
-          cp index.html closerintime.tzx _site/
-          cp -r jsspeccy-dist/jsspeccy-3.1/jsspeccy _site/
+          cp closerintime.tzx _site/
+          cp raze-dist/index.html _site/raze.html
+          cp raze-dist/base64.js raze-dist/raze.css raze-dist/raze.js _site/
+          cp -r raze-dist/pkg _site/
+          cp index.html _site/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
