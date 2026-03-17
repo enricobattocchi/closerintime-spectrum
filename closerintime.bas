@@ -1,7 +1,7 @@
-   1 REM *** CLOSER IN TIME ***
-   2 REM *** ZX Spectrum Edition ***
-   3 REM Based on closerintime.com
-   5 GO TO 100
+   1 BORDER 0: PAPER 0: INK 7: CLS : GO TO 100
+   2 REM *** CLOSER IN TIME ***
+   3 REM *** ZX Spectrum Edition ***
+   4 REM Based on closerintime.com
   10 REM === DATA: 50 events ===
   11 REM Format: name$, year
   12 DATA "Venus of Willendorf",-28000
