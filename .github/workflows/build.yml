@@ -36,10 +36,10 @@ jobs:
         run: |
           mkdir _site
           cp closerintime.tzx _site/
-          cp raze-dist/index.html _site/raze.html
-          cp raze-dist/base64.js raze-dist/raze.css raze-dist/raze.js _site/
+          cp site/index.html _site/
+          cp site/raze.js _site/
+          cp raze-dist/base64.js raze-dist/raze.css _site/
           cp -r raze-dist/pkg _site/
-          cp index.html _site/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
