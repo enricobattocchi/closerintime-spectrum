@@ -172,7 +172,7 @@ async function onDocumentLoad() {
         );
     }
 
-    let tape = urlParams.get("tape");
+    let tape = urlParams.get("tape") || "closerintime.tzx";
     if (tape) {
         console.log("TAPE=", tape);
         await fetch_with_cors_if_needed(tape,
