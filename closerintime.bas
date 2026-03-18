@@ -85,7 +85,7 @@
  301 CLS
  302 LET ns=0
  303 LET top=1: LET cur=1: LET oc=1: LET ot=1
- 304 LET pg=16: REM visible rows
+ 304 LET pg=8: REM visible events (2 rows each)
  310 REM -- Draw full screen once --
  311 GO SUB 350
  315 REM -- Input loop --
@@ -117,32 +117,34 @@
  354 FOR i=0 TO pg-1
  355 LET idx=top+i: GO SUB 365
  356 NEXT i
- 357 PRINT AT pg+2,0; PAPER 0; INK 2;"_______________________________"
- 358 PRINT AT pg+3,0; INK 5;"Q"; INK 7;"/"; INK 5;"A"; INK 7;" Move  "; INK 5;"SPACE"; INK 7;" Select"
- 359 IF ns>=2 THEN PRINT AT pg+4,0; INK 6; BRIGHT 1;"G"; INK 7;" = Show timeline!    ": RETURN
- 360 PRINT AT pg+4,0; INK 7;"Select ";2-ns;" more event  ": RETURN
- 365 REM -- Draw single row (i=row, idx=event) --
- 366 IF idx>ne THEN PRINT AT i+2,0;"                                ": RETURN
- 367 LET sel=0: LET bg=0
- 368 IF ns>0 THEN IF s(1)=idx THEN LET sel=1
- 369 IF ns>1 THEN IF s(2)=idx THEN LET sel=2
- 370 IF ns>2 THEN IF s(3)=idx THEN LET sel=3
- 371 IF idx=cur THEN LET bg=1
- 372 IF sel>0 THEN PRINT AT i+2,0; PAPER bg; INK c(sel); BRIGHT 1;CHR$ 143;" ";: GO TO 375
- 373 PRINT AT i+2,0; PAPER bg; INK 7;"  ";
- 375 LET yr=y(idx)
- 376 IF yr<0 THEN PRINT PAPER bg; INK 4;-yr; INK 7;"BC ";e$(idx)( TO 16);"  ": RETURN
- 377 PRINT PAPER bg; INK 4;yr; INK 7;" ";e$(idx)( TO 19);" "
- 378 RETURN
- 390 REM -- Update 2 rows (old+new cursor) --
+ 357 PRINT AT pg*2+2,0; PAPER 0; INK 2;"_______________________________"
+ 358 PRINT AT pg*2+3,0; INK 5;"Q"; INK 7;"/"; INK 5;"A"; INK 7;" Move  "; INK 5;"SPACE"; INK 7;" Select"
+ 359 IF ns>=2 THEN PRINT AT pg*2+4,0; INK 6; BRIGHT 1;"G"; INK 7;" = Show timeline!   ": RETURN
+ 360 PRINT AT pg*2+4,0; INK 7;"Select ";2-ns;" more event ": RETURN
+ 365 REM -- Draw single event (2 rows) --
+ 366 LET r=i*2+2
+ 367 IF idx>ne THEN PRINT AT r,0;"                               ": PRINT AT r+1,0;"                               ": RETURN
+ 368 LET sel=0: LET bg=0
+ 369 IF ns>0 THEN IF s(1)=idx THEN LET sel=1
+ 370 IF ns>1 THEN IF s(2)=idx THEN LET sel=2
+ 371 IF ns>2 THEN IF s(3)=idx THEN LET sel=3
+ 372 IF idx=cur THEN LET bg=1
+ 373 LET yr=y(idx)
+ 374 LET y$=STR$ (ABS yr)
+ 375 IF yr<0 THEN LET y$=y$+" BC"
+ 376 IF sel>0 THEN PRINT AT r,0; PAPER bg; INK c(sel); BRIGHT 1;CHR$ 143;" "; INK 4;y$;"              ": GO TO 378
+ 377 PRINT AT r,0; PAPER bg; INK 7;"  "; INK 4;y$;"              "
+ 378 PRINT AT r+1,0; PAPER bg; INK 7;"  ";e$(idx)
+ 379 RETURN
+ 390 REM -- Update 2 events (old+new cursor) --
  391 LET i=oc-top: LET idx=oc: GO SUB 365
  392 LET i=cur-top: LET idx=cur: GO SUB 365
  393 RETURN
- 395 REM -- Update header + current row --
+ 395 REM -- Update header + current event --
  396 PRINT AT 0,17; INK 7;"Sel:";ns;"/3 "
  397 LET i=cur-top: LET idx=cur: GO SUB 365
- 398 IF ns>=2 THEN PRINT AT pg+4,0; INK 6; BRIGHT 1;"G"; INK 7;" = Show timeline!    ": RETURN
- 399 PRINT AT pg+4,0; INK 7;"Select ";2-ns;" more event  ": RETURN
+ 398 IF ns>=2 THEN PRINT AT pg*2+4,0; INK 6; BRIGHT 1;"G"; INK 7;" = Show timeline!   ": RETURN
+ 399 PRINT AT pg*2+4,0; INK 7;"Select ";2-ns;" more event ": RETURN
  400 REM === TOGGLE SELECTION ===
  401 REM Check if already selected
  402 LET found=0
@@ -237,10 +239,8 @@
  720 IF ns=3 THEN GO TO 770
  725 GO TO 800
  730 REM -- 2-event sentence --
- 731 LET d1=y(s(2))-y(s(1))
- 732 LET d2=cy-y(s(2))
- 733 IF d1<0 THEN LET d1=-d1
- 734 IF d2<0 THEN LET d2=-d2
+ 731 LET ya=y(s(1)): LET yb=y(s(2)): GO SUB 900: LET d1=d
+ 732 LET ya=y(s(2)): LET yb=cy: GO SUB 900: LET d2=d
  736 IF d2<d1 THEN GO TO 740
  737 IF d2>d1 THEN GO TO 750
  738 GO TO 760
@@ -263,10 +263,8 @@
  765 PRINT AT 19,0; INK 4;"(";d1;" vs ";d2;" years)"
  767 GO TO 800
  770 REM -- 3-event sentence --
- 771 LET d1=y(s(2))-y(s(1))
- 772 LET d2=cy-y(s(3))
- 773 IF d1<0 THEN LET d1=-d1
- 774 IF d2<0 THEN LET d2=-d2
+ 771 LET ya=y(s(1)): LET yb=y(s(2)): GO SUB 900: LET d1=d
+ 772 LET ya=y(s(3)): LET yb=cy: GO SUB 900: LET d2=d
  775 IF d1>d2 THEN GO TO 780
  776 IF d2>d1 THEN GO TO 787
  777 GO TO 794
@@ -295,3 +293,8 @@
  802 PRINT AT 21,0; INK 6;"Press any key to try again"
  810 PAUSE 0
  811 GO TO 300
+ 900 REM -- Year diff (ya,yb) -> d --
+ 901 LET d=ABS (yb-ya)
+ 902 IF ya<0 AND yb>0 THEN LET d=d-1
+ 903 IF ya>0 AND yb<0 THEN LET d=d-1
+ 904 RETURN
